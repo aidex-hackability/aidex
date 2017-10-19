@@ -1,4 +1,5 @@
-# Aidex - Artificial Intelligence assisted Dexertity 
+# Aidex - Intelligence to aide Dexterity
+for [hackABILITY](http://riccentre.ca/hackability/) challenge
 
 ## Vision and Objective
 Integration of off-the-shelf technology to provide hands free controls.
