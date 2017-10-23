@@ -20,4 +20,4 @@
 - [Using Alexa Skills Kit and AWS IoT to Voice Control Connected Devices](https://developer.amazon.com/blogs/post/Tx3828JHC7O9GZ9/Using-Alexa-Skills-Kit-and-AWS-IoT-to-Voice-Control-Connected-Devices)
 - [AVS Device SDK](https://developer.amazon.com/alexa-voice-service/sdk)
 - [Build Skills with the Alexa Skills Kit](https://developer.amazon.com/docs/ask-overviews/build-skills-with-the-alexa-skills-kit.html)
-
+- [Alexa Voice Design Guide](https://developer.amazon.com/designing-for-voice/)
