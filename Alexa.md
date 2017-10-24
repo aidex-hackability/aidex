@@ -21,3 +21,4 @@
 - [AVS Device SDK](https://developer.amazon.com/alexa-voice-service/sdk)
 - [Build Skills with the Alexa Skills Kit](https://developer.amazon.com/docs/ask-overviews/build-skills-with-the-alexa-skills-kit.html)
 - [Alexa Voice Design Guide](https://developer.amazon.com/designing-for-voice/)
+- [Alexa Skills Node.js Tutorial](https://developer.amazon.com/alexa-skills-kit/alexa-skill-quick-start-tutorial-nodejs)
