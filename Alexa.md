@@ -9,6 +9,7 @@
 - [How to control your PC with Alexa](https://www.youtube.com/watch?v=OYO6LQHF_jE)
 - [Use amazon Alexa to turn on your pc and run programs](https://www.youtube.com/watch?v=FDg4GQIK2mk)
 - [Alexa Developers Youtube Channel](https://www.youtube.com/channel/UCbx0SPpWT6yB7_yY_ik7pmg)
+- [Make "Alexa" Control ANYTHING!](https://www.youtube.com/watch?v=rikUkvyDRGg )
 
 ## Alexa Simulator / Testing Tool
 - [Getting Started with the Alexa Skills Kit](https://echosim.io/)
@@ -22,3 +23,4 @@
 - [Build Skills with the Alexa Skills Kit](https://developer.amazon.com/docs/ask-overviews/build-skills-with-the-alexa-skills-kit.html)
 - [Alexa Voice Design Guide](https://developer.amazon.com/designing-for-voice/)
 - [Alexa Skills Node.js Tutorial](https://developer.amazon.com/alexa-skills-kit/alexa-skill-quick-start-tutorial-nodejs)
+- [Build An Alexa Quiz Game Skill](https://github.com/alexa/skill-sample-nodejs-quiz-game)
