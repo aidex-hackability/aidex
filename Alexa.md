@@ -1,5 +1,8 @@
 # Amazon Alexa Reference
 
+## Developer Blog
+- [Dig Deep - Code line by line](http://www.talkingtocomputers.com/category/digdeep/)
+
 ## Youtube Vid
 - [Absolutely no prior coding experience required!](http://dabblelab.teachable.com/)
 - [Dabble Lab Youtube Channel](https://www.youtube.com/dabblelab)
