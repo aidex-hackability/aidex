@@ -1,0 +1,43 @@
+SystemIntent {System}
+SystemIntent control {System}
+SystemIntent activate {System}
+SystemIntent open {System}
+SystemIntent start {System}
+SystemIntent close {System}
+SystemIntent stop {System}
+ClimateIntent what is the room temperature set to
+ClimateIntent what is the weather
+ClimateIntent what is the outside weather
+ClimateIntent what is the weather in {City}
+ClimateIntent temperature
+ClimateIntent {City} temperature
+ClimateIntent temperature {City}
+FanIntent is the fan on
+FanIntent is the fan off
+FanIntent what is the fan level
+FanIntent fan on
+FanIntent fan off
+FanIntent turn the fan on
+FanIntent turn the fan off
+FanIntent set fan to level {FanLevel}
+PowerIntent is power {PowerSelector} on
+PowerIntent is power {PowerSelector} off
+PowerIntent power status
+PowerIntent what is the power status
+PowerIntent turn the power {PowerSelector} on
+PowerIntent turn the power {PowerSelector} off
+LightIntent is light on
+LightIntent is light off
+LightIntent light status
+LightIntent what is the light status
+LightIntent turn the light on
+LightIntent turn the light off
+LightIntent set light to level {LightLevel}
+DriveIntent stop the drive
+DriveIntent start the drive
+DriveIntent what is the drive speed
+DriveIntent go {DriveDirection} by {DriveDegrees}
+DriveIntent set drive speed {DriveSpeed}
+DriveIntent turn around
+DriveIntent reverse
+DriveIntent stop
