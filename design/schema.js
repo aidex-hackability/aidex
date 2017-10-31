@@ -17,34 +17,90 @@
           "type": "AMAZON.US_CITY"
         }
       ],
-      "intent": "ClimateIntent"
+      "intent": "WeatherIntent"
     },
     {
       "slots": [
+        {
+          "name": "Temperature",
+          "type": "AMAZON.NUMBER"
+        }
+      ],
+      "intent": "ClimateControlIntent"
+    },
+    {
+      "intent": "ClimateStatusIntent"
+    },
+    {
+      "slots": [
+        {
+          "name": "Status",
+          "type": "AIDEX_STATUS"
+        },
         {
           "name": "FanLevel",
           "type": "AIDEX_FAN_LEVELS"
         }
       ],
-      "intent": "FanIntent"
+      "intent": "FanControlIntent"
+    },
+    {
+      "slots": [
+        {
+          "name": "Status",
+          "type": "AIDEX_STATUS"
+        }
+      ],
+      "intent": "FanStatusIntent"
     },
     {
       "slots": [
         {
           "name": "PowerSelector",
           "type": "AIDEX_POWER_SELECTORS"
+        },
+        {
+          "name": "Status",
+          "type": "AIDEX_STATUS"
         }
       ],
-      "intent": "PowerIntent"
+      "intent": "PowerStatusIntent"
     },
     {
       "slots": [
+        {
+          "name": "PowerSelector",
+          "type": "AIDEX_POWER_SELECTORS"
+        },
+        {
+          "name": "Status",
+          "type": "AIDEX_STATUS"
+        }
+      ],
+      "intent": "PowerControlIntent"
+    },
+    {
+      "slots": [
+        {
+          "name": "Status",
+          "type": "AIDEX_STATUS"
+        }
+      ],
+      "intent": "LightStatusIntent"
+    },
+   
+    {
+      "slots": [
+        {
+          "name": "Status",
+          "type": "AIDEX_STATUS"
+        },
         {
           "name": "LightLevel",
           "type": "AIDEX_LIGHT_LEVELS"
         }
       ],
-      "intent": "LightIntent"
+      "intent": "LightControlIntent"
     },
     {
       "slots": [
@@ -61,7 +117,10 @@
           "type": "AIDEX_DRIVE_SPEEDS"         
         }
       ],
-      "intent": "DriveIntent"
+      "intent": "DriveControlIntent"
+    },
+    {
+      "intent": "DriveStatusIntent"
     },
     {
       "intent": "AMAZON.StopIntent"

@@ -18,27 +18,58 @@ const handlers = {
         this.response.speak(speechOutput);
         this.emit(':responseReady');
     },
-    'ClimateIntent' : function () {
+    'WeatherIntent' : function () {
+        const speechOutput = 'Here I can help you to get the weather information, after I have learnt a bit more myself.';
+        this.response.speak(speechOutput);
+        this.emit(':responseReady');
+    },
+    'ClimateStatusIntent' : function () {
+        const speechOutput = 'Here I can help you to get the climate setting here, after I have learnt a bit more myself.';
+        this.response.speak(speechOutput);
+        this.emit(':responseReady');
+    },
+
+    'ClimateControlIntent' : function () {
         const speechOutput = 'Here I can help you to make the climate here more comfortable, after I have learnt a bit more myself.';
         this.response.speak(speechOutput);
         this.emit(':responseReady');
     },
-    'FanIntent' : function () {
+    'FanStatusIntent' : function () {
+        const speechOutput = 'Here I can help you to get ihe fan status, after I have learnt a bit more myself.';
+        this.response.speak(speechOutput);
+        this.emit(':responseReady');
+    },
+    'FanControlIntent' : function () {
         const speechOutput = 'Here I can help you to trun on or off the fan, after I have learnt a bit more myself.';
         this.response.speak(speechOutput);
         this.emit(':responseReady');
     },
-    'PowerIntent' : function () {
+    'PowerStatusIntent' : function () {
+        const speechOutput = 'Here I can help you to get the power status of some equipment in the room, after I have learnt a bit more myself.';
+        this.response.speak(speechOutput);
+        this.emit(':responseReady');
+    },
+     'PowerControlIntent' : function () {
         const speechOutput = 'Here I can help you to turn on or off some equipment in the room, after I have learnt a bit more myself.';
         this.response.speak(speechOutput);
         this.emit(':responseReady');
     },
-    'LightIntent' : function () {
+     'LightStatusIntent' : function () {
+        const speechOutput = 'Here I can help you to get the status of the light, after I have learnt a bit more myself.';
+        this.response.speak(speechOutput);
+        this.emit(':responseReady');
+    },
+    'LightControlIntent' : function () {
         const speechOutput = 'Here I can help you to adjust the light, after I have learnt a bit more myself.';
         this.response.speak(speechOutput);
         this.emit(':responseReady');
     },
-    'DriveIntent' : function () {
+     'DriveStatusIntent' : function () {
+        const speechOutput = 'Here I can help you to get the status of your wheels, after I have learnt a bit more myself.';
+        this.response.speak(speechOutput);
+        this.emit(':responseReady');
+    },
+    'DriveControlIntent' : function () {
         const speechOutput = 'Here I can help you to move around, after I have learnt a bit more myself.';
         this.response.speak(speechOutput);
         this.emit(':responseReady');

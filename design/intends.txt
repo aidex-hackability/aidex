@@ -5,39 +5,42 @@ SystemIntent open {System}
 SystemIntent start {System}
 SystemIntent close {System}
 SystemIntent stop {System}
-ClimateIntent what is the room temperature set to
-ClimateIntent what is the weather
-ClimateIntent what is the outside weather
-ClimateIntent what is the weather in {City}
-ClimateIntent temperature
-ClimateIntent {City} temperature
-ClimateIntent temperature {City}
-FanIntent is the fan on
-FanIntent is the fan off
-FanIntent what is the fan level
-FanIntent fan on
-FanIntent fan off
-FanIntent turn the fan on
-FanIntent turn the fan off
-FanIntent set fan to level {FanLevel}
-PowerIntent is power {PowerSelector} on
-PowerIntent is power {PowerSelector} off
-PowerIntent power status
-PowerIntent what is the power status
-PowerIntent turn the power {PowerSelector} on
-PowerIntent turn the power {PowerSelector} off
-LightIntent is light on
-LightIntent is light off
-LightIntent light status
-LightIntent what is the light status
-LightIntent turn the light on
-LightIntent turn the light off
-LightIntent set light to level {LightLevel}
-DriveIntent stop the drive
-DriveIntent start the drive
-DriveIntent what is the drive speed
-DriveIntent go {DriveDirection} by {DriveDegrees}
-DriveIntent set drive speed {DriveSpeed}
-DriveIntent turn around
-DriveIntent reverse
-DriveIntent stop
+
+ClimateStatusIntent what is the room temperature
+ClimateStatusIntent temperature
+
+ClimateControlIntent set temperature to {Temperature}
+ClimateControlIntent set thermostat to {Temperature}
+ClimateControlIntent too cold
+ClimateControlIntent too warm
+
+WeatherIntent how is the weather
+WeatherIntent how is the weather in {City}
+WeatherIntent weather
+
+FanStatusIntent is the fan {Status}
+FanStatusIntent what is the fan level
+FanStatusIntent fan {Status}
+FanControlIntent turn the fan {Status}
+FanControlIntent set fan to level {FanLevel}
+
+PowerStatusIntent is power {PowerSelector} {Status}
+PowerStatusIntent power status
+PowerStatusIntent what is the power status
+PowerControlIntent turn the power {PowerSelector} {Status}
+PowerControlIntent turn the power {PowerSelector} {Status}
+
+LightStatusIntent is light {Status}
+LightStatusIntent light status
+LightStatusIntent what is the light status
+LightControlIntent turn the light {Status}
+LightControlIntent set light to level {LightLevel}
+
+DriveControlIntent stop the drive
+DriveControlIntent start the drive
+DriveControlIntent go {DriveDirection} {DriveDegree} {DriveSpeed}
+DriveControlIntent set drive speed {DriveSpeed}
+DriveControlIntent turn around
+DriveControlIntent reverse
+DriveControlIntent stop
+DriveStatusIntent what is the drive speed

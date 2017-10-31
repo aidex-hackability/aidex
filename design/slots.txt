@@ -1,3 +1,9 @@
+AIDEX_STATUS_
+-----------
+on
+off
+unknown
+
 AIDEX_SYSTEMS: 
 ------
 Climate Control
