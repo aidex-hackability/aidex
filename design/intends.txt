@@ -5,42 +5,33 @@ SystemIntent open {System}
 SystemIntent start {System}
 SystemIntent close {System}
 SystemIntent stop {System}
-
 ClimateStatusIntent what is the room temperature
 ClimateStatusIntent temperature
-
-ClimateControlIntent set temperature to {Temperature}
-ClimateControlIntent set thermostat to {Temperature}
-ClimateControlIntent too cold
-ClimateControlIntent too warm
-
-WeatherIntent how is the weather
-WeatherIntent how is the weather in {City}
-WeatherIntent weather
-
+ClimateSetIntent set temperature to {Temperature}
+ClimateSetIntent set thermostat to {Temperature}
+ClimateSetIncIntent too cold
+ClimateSetIncIntent warmer
+ClimateSetDecIntent too warm
+ClimateSetDecIntent colder
 FanStatusIntent is the fan {Status}
-FanStatusIntent what is the fan level
-FanStatusIntent fan {Status}
 FanControlIntent turn the fan {Status}
-FanControlIntent set fan to level {FanLevel}
-
+FanControlIntent fan {Status}
+FanSetIntent set fan to level {FanLevel}
 PowerStatusIntent is power {PowerSelector} {Status}
-PowerStatusIntent power status
-PowerStatusIntent what is the power status
 PowerControlIntent turn the power {PowerSelector} {Status}
-PowerControlIntent turn the power {PowerSelector} {Status}
-
-LightStatusIntent is light {Status}
-LightStatusIntent light status
-LightStatusIntent what is the light status
 LightControlIntent turn the light {Status}
-LightControlIntent set light to level {LightLevel}
-
-DriveControlIntent stop the drive
-DriveControlIntent start the drive
-DriveControlIntent go {DriveDirection} {DriveDegree} {DriveSpeed}
-DriveControlIntent set drive speed {DriveSpeed}
-DriveControlIntent turn around
-DriveControlIntent reverse
-DriveControlIntent stop
+LightSetIntent set light to level {LightLevel}
+DriveControlIntent drive {DriveStatus}
+DriveSetIntent set drive speed {DriveSpeed}
+DriveSetIncIntent faster
+DriveSetIncIntent too slow
+DriveSetDecIntent slower
+DriveSetDecIntent too fast
+DriveTurnIntent drive {DriveDirection} {DriveDegree} degrees
+DriveTurnIntent turn {DriveDirection} {DriveDegree} degrees
+DriveTurnIntent go {DriveDirection} {DriveDegree} degrees
+DriveTurnIntent more
+nullIntent good
+nullIntent okay
+nullIntent fine
 DriveStatusIntent what is the drive speed

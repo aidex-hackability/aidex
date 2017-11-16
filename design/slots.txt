@@ -43,21 +43,36 @@ AIDEX_DRIVE_DIRECTIONS:
 left
 right
 reverse
+around
+straight
 
 AIDEX_DRIVE_DEGREES: 
 -----------
-10 degrees
-20 degrees
-30 degrees
-40 degrees
-50 degrees
-60 degrees
-70 degrees
-80 degrees
-90 degrees
+10
+20
+30
+40
+50
+60
+70
+80
+90
 
 AIDEX_DRIVE_SPEEDS: 
 ----------
 1
 2
 3
+
+AIDEX_TEMPERATURE_UNITS
+----------------
+degrees
+celsius
+fahrenheit
+
+AIDEX_DRIVE_STATUS
+---------------
+start
+stop
+unknown
+

@@ -1,6 +1,41 @@
-
 {
   "intents": [
+    {
+      "intent": "AMAZON.NavigateSettingsIntent"
+    },
+    {
+      "intent": "AMAZON.MoreIntent"
+    },
+    {
+      "intent": "AMAZON.PageDownIntent"
+    },
+    {
+      "intent": "AMAZON.PageUpIntent"
+    },
+    {
+      "intent": "AMAZON.ScrollRightIntent"
+    },
+    {
+      "intent": "AMAZON.ScrollDownIntent"
+    },
+    {
+      "intent": "AMAZON.ScrollLeftIntent"
+    },
+    {
+      "intent": "AMAZON.ScrollUpIntent"
+    },
+    {
+      "intent": "AMAZON.NextIntent"
+    },
+    {
+      "intent": "AMAZON.PreviousIntent"
+    },
+    {
+      "intent": "AMAZON.ResumeIntent"
+    },
+    {
+      "intent": "AMAZON.PauseIntent"
+    },
     {
       "slots": [
         {
@@ -13,33 +48,31 @@
     {
       "slots": [
         {
-          "name": "City",
-          "type": "AMAZON.US_CITY"
-        }
-      ],
-      "intent": "WeatherIntent"
-    },
-    {
-      "slots": [
-        {
           "name": "Temperature",
           "type": "AMAZON.NUMBER"
-        }
+        },
+        {
+          "name": "Unit",
+          "type": "AIDEX_TEMPERATURE_UNITS"
+        },       
       ],
-      "intent": "ClimateControlIntent"
+      "intent": "ClimateSetIntent"
     },
     {
       "intent": "ClimateStatusIntent"
+    },
+    {
+      "intent": "ClimateSetIncIntent"
+    },
+   
+    {
+      "intent": "ClimateSetDecIntent"
     },
     {
       "slots": [
         {
           "name": "Status",
           "type": "AIDEX_STATUS"
-        },
-        {
-          "name": "FanLevel",
-          "type": "AIDEX_FAN_LEVELS"
         }
       ],
       "intent": "FanControlIntent"
@@ -52,6 +85,15 @@
         }
       ],
       "intent": "FanStatusIntent"
+    },
+    {
+      "slots": [
+        {
+          "name": "FanLevel",
+          "type": "AIDEX_FAN_LEVELS"
+        }
+      ],
+      "intent": "FanSetIntent"
     },
     {
       "slots": [
@@ -82,26 +124,39 @@
     {
       "slots": [
         {
-          "name": "Status",
-          "type": "AIDEX_STATUS"
+          "name": "LightLevel",
+          "type": "AIDEX_LIGHT_LEVELS"
         }
       ],
-      "intent": "LightStatusIntent"
+      "intent": "LightSetIntent"
     },
-   
     {
       "slots": [
         {
           "name": "Status",
           "type": "AIDEX_STATUS"
-        },
-        {
-          "name": "LightLevel",
-          "type": "AIDEX_LIGHT_LEVELS"
         }
       ],
       "intent": "LightControlIntent"
     },
+    {
+     "intent": "DriveControlIntent"
+    },
+    {
+      "slots": [
+        {
+          "name": "DriveSpeed",
+          "type": "AIDEX_DRIVE_SPEEDS"
+        }
+      ],
+      "intent": "DriveSetIntent"
+    },
+    {
+      "intent": "DriveSetIncIntent"
+    },    
+    {
+      "intent": "DriveSetDecIntent"
+    },    
     {
       "slots": [
         {
@@ -111,16 +166,15 @@
         {
           "name": "DriveDegree",
           "type": "AIDEX_DRIVE_DEGREES"
-        },
-        {
-          "name": "DriveSpeed",
-          "type": "AIDEX_DRIVE_SPEEDS"         
         }
       ],
-      "intent": "DriveControlIntent"
+      "intent": "DriveTurnIntent"
     },
     {
       "intent": "DriveStatusIntent"
+    },    
+    {
+      "intent": "nullIntent"
     },
     {
       "intent": "AMAZON.StopIntent"
