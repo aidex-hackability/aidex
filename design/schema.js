@@ -140,6 +140,12 @@
       "intent": "LightControlIntent"
     },
     {
+      "slots": [
+        {
+          "name": "DriveStatus",
+          "type": "AIDEX_DRIVE_STATUS"
+        }
+      ],
      "intent": "DriveControlIntent"
     },
     {

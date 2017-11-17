@@ -1,5 +1,3 @@
-
-
 'use strict';
 const Alexa = require("alexa-sdk");
 
@@ -14,33 +12,51 @@ const GENERIC_HELP_TEXT = "Anything else I can help you with? You can always sai
 const NOT_IMPL_TXT = "I will be able to help you with that shortly, after I have learnt a bit more myself."
 const MISSING_INFO = "MISSING INFO"
 
+// Some other constant
+const TEMP_CHANGE = 3;
+
 // factor out the common string out later
 // break down into different handler
-// use state when is needed (use the dynamoDB etc.) or use Session attribute
+// use state when is needed (use the dynamoDB etc.) or use Session attribute (see the high/low game ex)
 // use randomize text 
 // remember to use the yes/no built-in intent
 // Use SSML
 const handlers = {
     'LaunchRequest': function () {
+        // add session support - default state
+        // Note: userid is: this.user.userId
+        if(Object.keys(this.attributes).length === 0) {
+            this.attributes['thermoAttr'] = [21];
+            this.attributes['lightAttr'] = ['off'];
+            this.attributes['powerAttr'] = ['off','off','off','off'];
+            this.attributes['fanAttr'] = ['off'];
+            this.attributes['driveSpeedAttr'] = [0];
+            this.attributes['driveState'] = [{speed:0,turn:'straight',deg:'0'}];
+        }
         this.emit('SayGreeting');
     },
     // This is just a place holder for now
     'SystemIntent' : function () {
-        const speechOutput = "Here I can give you a brief summary of all the AIDex systems, after I have learnt a bit more myself.";
+        const speechOutput = "<p>Hum, how did we get here? I don't do this anymore.</p>," + 
+            "<p>How about try help free me see what else I can do?</p>";
         const reprompt = GENERIC_HELP_TEXT;
         const skillName = 'SystemIntent';
-        const textCard = "Here I can give you a brief summary of all the AIDex systems, after I have learnt a bit more myself.";
+        const textCard = speechOutput;
         
         this.response.cardRenderer(skillName,textCard);
         this.response.speak(speechOutput).listen(reprompt);
         this.emit(':responseReady');
     },
-    // pretend that I can't find a themostate
+    // pretend that I can't find a thermostat
     'ClimateStatusIntent' : function () {
-        const speechOutput = "hum, I can't sense a themostat here. Sorry. Anything else I can do for you?";
+        const speechOutput = "<s>hum, I can't sense a thermostat here</s>" + 
+            "<s>but I would guess is around " + this.attributes['thermoAttr'][0].toString() + " degrees </s>"
+            "<s>Sorry</s> <s>Anything else I can do for you?</s>";
         const reprompt = GENERIC_HELP_TEXT;
         const skillName = 'ClimateStatusIntent';
         const textCard = speechOutput;
+        
+        // fetch a dummy value from session variable or database
         
         this.response.cardRenderer(skillName,textCard);
         this.response.speak(speechOutput).listen(reprompt);
@@ -52,12 +68,12 @@ const handlers = {
         const intent = this.event.request.intent;
         const reprompt = GENERIC_HELP_TEXT;
         
-        let speechOutput = "hum, I can't sense a themostat here. ";
+        let speechOutput = ""; 
         let skillName = "ClimateSetIntent ";
         let textCard = speechOutput;
         
-        let temperature = 0;
-        let unit = ""
+        let temperature = this.attributes['thermoAttr'][0];
+        let unit = "celsius"
 
         if (intent.slots.Temperature.value) {
             temperature = intent.slots.Temperature.value;
@@ -66,6 +82,11 @@ const handlers = {
         } else {
             skillName += "MISSING INFO";
         }
+        
+        this.attributes['thermoAttr'][0] = temperature.toString();
+        speechOutput = "<s>hum, I can't sense a thermostat here</s>" + 
+            "<s>but I will remember to set temperature to " + temperature.toString() + " degrees when I can.</s>"
+            "<s>Sorry</s> <s>Anything else I can do for you?</s>";
 
         this.response.cardRenderer(skillName,textCard);
         this.response.speak(speechOutput).listen(reprompt);
@@ -74,10 +95,12 @@ const handlers = {
     // this might need to be stateful here
     // if no previous temperature set, use the default and adjust from there
     'ClimateSetIncIntent' : function () {
-        let speechOutput = "hum, I can't sense a themostat here. ";
+        let speechOutput = "hum, I can't sense a thermostat here. ";
         let skillName = "ClimateSetIncIntent ";
         let textCard = speechOutput;
         const reprompt = GENERIC_HELP_TEXT;
+        
+        let temperature = this.attributes['thermoAttr'][0] + TEMP_CHANGE;
         
         this.response.cardRenderer(skillName,textCard);
         this.response.speak(speechOutput).listen(reprompt);
@@ -86,7 +109,7 @@ const handlers = {
     // this might need to be stateful here
     // if no previous temperature set, use the default and adjust from there
     'ClimateSetDecIntent' : function () {
-        let speechOutput = "hum, I can't sense a themostat here. ";
+        let speechOutput = "hum, I can't sense a thermostat here. ";
         let skillName = "ClimateSetDecIntent ";
         let textCard = speechOutput;
         const reprompt = GENERIC_HELP_TEXT;
@@ -250,21 +273,23 @@ const handlers = {
         
         let skillName = "LightControlIntent ";
         let textCard = "";
-        let speechOutput = "I can help you with that.";
+        let speechOutput = "<p>I can help you with that.</p>";
         let reprompt = GENERIC_HELP_TEXT;
         
         let status = "";
         if (intent && intent.slots && intent.slots.Status && intent.slots.Status.value ) {
             status = intent.slots.Status.value;
             skillName += status;
-            textCard = "Light is " + status;
+            textCard = "<p>Light is " + status + ".</p>";
         } else {
             reprompt = "Sorry I missed that, would you mind to repeat that? You can say turn the light on."
             skillName += MISSING_INFO;
         }
 
+        speechOutput += "Light is now " + status;
+
         this.response.cardRenderer(skillName,textCard);
-        this.response.speak(speechOutput).listen(reprompt);
+        this.response.speak(speechOutput);
         this.emit(':responseReady');
     },
     'LightSetIntent' : function () {
@@ -420,14 +445,15 @@ const handlers = {
         this.emit(':responseReady');
     },
     // replace this with yes/no , no intent
+    // this need to be state sensitive - put this on the TODO list.
     'nullIntent' : function () {
-        const speechOutput = 'Great!';
+        const speechOutput = "<p>Great, that is a good start, although I don't fully understand you yet</p>, <p>how about we try help free me first</p>";
         const reprompt = GENERIC_HELP_TEXT;
         this.response.speak(speechOutput);
         this.emit(':responseReady');
     },    
     'SayGreeting' : function () {
-        const speechOutput = "Hi Deborah, Welcome AIDex Free Me! How may I make your day better? Just say help free me and we will start from there."
+        const speechOutput = "<p>Hi Deborah, Welcome AIDex Free Me! How may I make your day better?</p> <p>just say help free me and we will start from there.</p>";
         const reprompt = "In case you missed it, just say help free me and we will start from there."
         const textCard = speechOutput;
         
@@ -436,14 +462,14 @@ const handlers = {
         this.emit(':responseReady');
     },
     'AMAZON.HelpIntent': function () {
-        const speechOutput = 'Just give me sometime to prepare myself, and I will be helping you very soon! ';
-        const reprompt = 'Say free me again in a bit, and I should be ready.';
+        const speechOutput = 'How about we try Turn the Light on?';
+        const reprompt = 'Now you try it';
 
         this.response.speak(speechOutput).listen(reprompt);
         this.emit(':responseReady');
     },
     'AMAZON.CancelIntent': function () {
-        this.response.speak('Goodbye!');
+        this.response.speak('okay, maybe next time.');
         this.emit(':responseReady');
     },
     'AMAZON.StopIntent': function () {
@@ -466,10 +492,6 @@ const handlers = {
         this.response.speak('This will be implememnt later')  ;
         this.emit(':responseReady');                
     },
-    'AMAZON.HelpIntent' : function () {
-        this.response.speak('This will be implememnt later')  ;
-        this.emit(':responseReady');                
-    },    
     'AMAZON.ScrollUpIntent' : function () {
         this.response.speak('This will be implememnt later')  ;
         this.emit(':responseReady');                
@@ -503,7 +525,8 @@ const handlers = {
         this.emit(':responseReady');                
     },
     'AMAZON.StopIntent' : function () {
-        this.response.speak('This will be implememnt later')  ;
+        this.response.speak('okay, give me a shout when you need me.')  ;
         this.emit(':responseReady');                
     },    
 }
+    
