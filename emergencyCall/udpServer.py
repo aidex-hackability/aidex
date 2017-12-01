@@ -1,7 +1,6 @@
 '''
     Aidex Emergency Call UDP server
     Ref: http://www.binarytides.com/programming-udp-sockets-in-python/
-    for version Python 3.6+
 '''
 
 import socket
@@ -29,8 +28,7 @@ except socket.error as msg:
     print('Bind failed. Error Code : ' + str(msg[0]) + ' Message ' + msg[1])
     sys.exit()
 
-#print(f'Socket bind to port {PORT} complete')
-print('Socket bind to port ' + str(PORT) + ' complete')
+print(f'Socket bind to port {PORT} complete')
 
 # const for replay
 stressResp = 0x63    # placeholder for now
@@ -38,7 +36,7 @@ stressSignal = 0x61  # change it to 0xF2 later
 stressConfirm = 0x62  # change it to 0xF4
 
 # State
-stressState = False
+streeState = False
 
 
 def sendReply(sock, msg, msgFrom):
@@ -50,15 +48,6 @@ def sendReply(sock, msg, msgFrom):
     reply = msg
     sock.sendto(reply, msgFrom)
 
-# need some factoring here
-def processStressCall(signal, data, sock, addr):
-    byte=data[0]
-    if byte == signal:
-        sendReply(sock, stressResp.to_bytes(1, byteorder='big'), addr)
-        return True
-    else:
-        sendReply(sock, data, addr)
-        return False
 
 #now keep talking with the client
 while 1:
@@ -70,28 +59,26 @@ while 1:
     if not data:
         print("no data!")
 
-    if stressState:
+    if streeState:
         # check for the stress confirmation signal
         if data[0] == stressConfirm:
             print('stress signal confirmed')
             sendReply(s, stressResp.to_bytes(1, byteorder='big'), addr)
-            stressState = False  # reset state
+            streeState = False  # reset state
             os.system('aplay help2.wav &')
-            #status = processStressCall(stressConfirm, data, s, addr)
-            #if status == True:
-
         else:
             # false alarm
-            #stressState = False  # reset state (this is a risk here)
-            #stressState = processStressCall(stressSignal, data, s, addr)
-            pass
-
+            streeState = False  # reset state (this is a risk here)
+            sendReply(s,data,addr)
     else:
-        status = processStressCall(stressSignal, data, s, addr)
-        if status == True:
+        # business as usual
+        if data[0] == stressSignal:
             print('got a stress call!')
+            sendReply(s, stressResp.to_bytes(1, byteorder='big'), addr)
+            streeState = True
+            # play some music here
             os.system('aplay help1.wav &')
-            stressState = True
-
+        else:
+            sendReply(s, data, addr)
 
 s.close()
