@@ -1,0 +1,148 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "adrain",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent"
+        },
+        {
+          "name": "AMAZON.HelpIntent"
+        },
+        {
+          "name": "AMAZON.StopIntent"
+        },
+        {
+          "name": "DriveControlIntent",
+          "slots":[
+            {
+              "name": "Status",
+              "type": "DriveStatus"
+            }
+          ],
+          "samples": [
+            "Drive {Status}"
+          ]
+        },
+        {
+          "name": "ForwardIntent",
+          "slots": [
+
+          ],
+          "samples": [
+            "Go forward",
+            "Go straight"
+          ]
+        },
+        {
+          "name": "ReverseIntent",
+          "slots": [
+
+          ],
+          "samples": [
+            "go reverse",
+            "go back"
+          ]
+        },
+        {
+          "name": "SpeedSetIntent",
+          "slots": [
+            {
+              "name": "Speed",
+              "type": "AMAZON.NUMBER"
+            }
+          ],
+          "samples": [
+            "adjust speed to {Speed}",
+            "set speed to {Speed}"
+          ]
+        },
+        {
+          "name": "SpeedGetIntent",
+          "slots" : [
+
+          ],
+          "samples": [
+            "what is drive speed"
+          ]
+        },
+        {
+          "name": "TurnIntent",
+          "slots" : [
+            {
+              "name": "Direction",
+              "type": "DriveDirection"
+            }
+          ],
+          "samples": [
+            "turn {Direction}"
+          ]
+        },
+        {
+          "name": "RangeGetIntent",
+          "slots": [
+
+          ],
+          "samples": [
+            "what is range"
+          ]
+        },
+        {
+          "name": "SystemStatusIntent",
+          "slots": [
+
+          ],
+          "samples": [
+            "what is system status"
+          ]
+        },
+        {
+          "name": "LocationGetIntent",
+          "slots": [
+
+          ],
+          "samples": [
+            "what is location"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "values": [
+            {
+              "name": {
+                "value": "start"
+              }
+            },
+            {
+              "name": {
+                "value": "stop"
+              }
+            }
+          ],
+          "name": "DriveStatus"
+        },
+        {
+          "values"  : [
+            {
+              "name": {
+                "value": "left"
+              }
+            },
+            {
+              "name": {
+                "value": "right"
+              }
+            },
+            {
+              "name": {
+                "value": "straight"
+              }
+            }
+          ],
+          "name": "DriveDirection"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "deploy_settings": {
+    "default": {
+      "skill_id": "amzn1.ask.skill.bae4d754-91d0-46a0-9b40-2a7fd641a276",
+      "was_cloned": false,
+      "merge": {
+        "skillManifest": {
+          "apis": {
+            "custom": {
+              "endpoint": {
+                "uri": "ask-custom-aidexDrive-default"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
