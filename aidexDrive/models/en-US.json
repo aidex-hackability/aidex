@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "adrain",
+      "invocationName": "adrian",
       "intents": [
         {
           "name": "AMAZON.CancelIntent"
@@ -21,7 +21,8 @@
             }
           ],
           "samples": [
-            "Drive {Status}"
+            "Drive {Status}",
+            "aidex {Status}"
           ]
         },
         {
@@ -31,7 +32,8 @@
           ],
           "samples": [
             "Go forward",
-            "Go straight"
+            "Go straight",
+            "keep going"
           ]
         },
         {
@@ -63,7 +65,10 @@
 
           ],
           "samples": [
-            "what is drive speed"
+            "what is drive speed",
+            "what is my drive speed",
+            "what is my current speed",
+            "how fast am I going"
           ]
         },
         {
@@ -84,7 +89,9 @@
 
           ],
           "samples": [
-            "what is range"
+            "what is range",
+            "how far can I go",
+            "how long will the battery last"
           ]
         },
         {
@@ -93,7 +100,11 @@
 
           ],
           "samples": [
-            "what is system status"
+            "what is system status",
+            "is everything normal",
+            "is everything okay",
+            "is everything alright",
+            "anything wrong"
           ]
         },
         {
@@ -102,9 +113,22 @@
 
           ],
           "samples": [
-            "what is location"
+            "what is location",
+            "where is my wheelchair"
           ]
-        }
+        },
+        {
+          "name": "ExitIntent",
+          "slots": [
+
+          ],
+          "samples": [
+            "exit",
+            "that is all for now",
+            "I am done",
+            "nothing for now"
+          ]
+        }        
       ],
       "types": [
         {
@@ -118,7 +142,12 @@
               "name": {
                 "value": "stop"
               }
-            }
+            },
+            {
+              "name": {
+                "value": "off"
+              }
+            }            
           ],
           "name": "DriveStatus"
         },

@@ -32,7 +32,7 @@ var handlers = {
         if(Object.keys(this.attributes).length === 0) {
             this.attributes['driveState'] = [{speed:0,turn:'straight',deg:'0'}];
             this.attributes['batteryState'] = [90];
-            this.attributes['location'] = ['Montreal'];
+            this.attributes['location'] = ["Don't be silly, you are at the Blind Duck Pub!"];
         }
 
         const intentName = 'LaunchRequest';
@@ -120,7 +120,7 @@ var handlers = {
         console.log("ReverseIntent");
         
         // set the speed to -1 for reverse
-        //this.attributes['driveState'][0].speed = -1;
+        this.attributes['driveState'][0].speed = -1;
         const intentName = 'ReverseIntent';
         const textCard = "Going reverse";
         const speak = textCard;
@@ -133,6 +133,18 @@ var handlers = {
         const intent = this.event.request.intent;
         const intentName = 'TurnIntent';
         
+        // if the current speed is set to zero or drive is off/stop, don't do anything
+        let speed = this.attributes['driveState'][0].speed;
+        if (speed == 0) {
+            const speechOutput = "Seems like the drive is not enabled. Try 'Drive start' if you planning to go somewhere.";
+            const textCard = speechOutput;
+			const reprompt = speechOutput;
+            console.log("TurnIntent: Drive not started. ");
+            //return this.emit(':elicitSlot', slotToElicit, speechOutput, reprompt);
+            emitResponse.call(this,intentName,textCard,speechOutput,reprompt); 
+            return;
+        }
+
         let turn = undefined;
         if (intent.slots.Direction.value) {
             // all slots are in place
@@ -222,9 +234,17 @@ var handlers = {
         emitResponse.call(this,intentName,textCard,speak,reprompt);
     },
     'SystemStatusIntent': function () {
+        const msg = [
+            "Everything is okay.",
+            "Don't worry, everything is okay",
+            "System normal"
+        ]
+        let r = Math.floor(Math.random() * msg.length) // random returns [0,1)
+
         console.log("SystemStatusIntent");        
         const intentName = 'SystemStatusIntent';
-        const speak = "Everything is okay."
+        //const speak = "Everything is okay."
+        const speak = msg[r]
         const textCard = speak;
         const reprompt = 'what else may I help you with?';
         console.log(speak);
@@ -233,12 +253,16 @@ var handlers = {
     'LocationGetIntent': function () {
         console.log("LocationGetIntent");
         const intentName = 'LocationIntent';
-        const speak = "I believe your current location is around " + this.attributes['location'][0];
+        //const speak = "I believe your current location is around " + this.attributes['location'][0];
+        const speak = "<p>I believe your current location is around,</p> <p>wait</p> " + this.attributes['location'][0];
         const textCard = speak;
         const reprompt = 'what else may I help you with?';
         console.log(speak);
         emitResponse.call(this,intentName,textCard,speak,reprompt);
     },    
+    'ExitIntent' : function () {
+        this.emit('SessionEndedRequest');
+    },
     'SessionEndedRequest' : function() {
         console.log('Session ended with reason: ' + this.event.request.reason);
         const intentName = 'SessionEndedRequest';
@@ -255,6 +279,15 @@ var handlers = {
         emitResponse.call(this,intentName,textCard,speak,reprompt);
     },
     'AMAZON.HelpIntent' : function() {
+        // check for uninit session data
+        // this is for edge case when someone said:
+        // " ask Adrian for help"
+        if(Object.keys(this.attributes).length === 0) {
+            this.attributes['driveState'] = [{speed:0,turn:'straight',deg:'0'}];
+            this.attributes['batteryState'] = [90];
+            this.attributes['location'] = ['Montreal'];
+        }
+
         const intentName = 'HelpIntent';
         const speak = "<p>for controlling your wheel chair, you can try 'go forward', 'reverse', 'drive stop' 'turn left' or 'turn right' </p>" + 
             "<p>To adjust the speed, just said 'set speed to 1' or something similar.</p>";
@@ -270,6 +303,11 @@ var handlers = {
         emitResponse.call(this,intentName,textCard,speak,reprompt);
     },
     'Unhandled' : function() {
-        this.response.speak("Sorry, I didn't get that. You can try: 'help Adrain'");
+        const intentName = 'Unhandled';
+        const speak = "Sorry, I didn't get that. You can try: 'help Adrian'";
+        const textCard = speak;
+        const reprompt = 'what else I can help you with?';
+        emitResponse.call(this,intentName,textCard,speak,reprompt);
+        //this.response.speak("Sorry, I didn't get that. You can try: 'help Adrian'");
     }
 };
