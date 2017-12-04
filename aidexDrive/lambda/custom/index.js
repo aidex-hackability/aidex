@@ -196,8 +196,8 @@ var handlers = {
             emitResponse.call(this,intentName,textCard,speechOutput,reprompt);
         }
         if ( (speed > 3) || (speed < 0) ) {
-            const speechOutput = "Seems like the speed setting you want is not correct." + 
-                "The correct speed input is 1, 2 or 3. Would you mind to repeat what speed you want?";
+            const speechOutput = "<p>Seems like the speed setting you want is not correct.</p>" + 
+                "<p>The correct speed input is 1, 2 or 3.</p> <p>Would you mind to repeat what speed you want?</p>";
             const textCard = speechOutput;
             const reprompt = speechOutput;
             emitResponse.call(this,intentName,textCard,speechOutput,reprompt);
