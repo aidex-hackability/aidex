@@ -16,7 +16,8 @@ logging.basicConfig(level=logging.INFO)
 
 
 HOST = ''   # Symbolic name meaning all available interfaces
-PORT = 9876  # matching the java client
+#PORT = 9876  # matching the java client
+PORT = 9877 # to avoid the same port# for AidexLight
 
 class AidexUDPCommand():
     def __init__(self):
@@ -61,12 +62,12 @@ class AidexUDPCommand():
             logger.info('Stress signal confirmed')
             # play another audio clip here
             os.system('aplay help2.wav &')
-            
-            return self.stressResp.to_bytes(1, byteorder='big')
+            self.stressState = False # reset state
+            return self.stressConfirm.to_bytes(1, byteorder='big')
         else:
             # false alarm
             self.stressState = False
-            return cmd
+            return self.stressResp.to_bytes(1, byteorder='big')
 
 
     def handleExit(self):
