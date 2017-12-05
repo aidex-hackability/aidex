@@ -68,7 +68,7 @@ while 1:
             os.system('aplay help2.wav &')
         else:
             # false alarm
-            streeState = False  # reset state (this is a risk here)
+            #streeState = False  # don't reset state (this is a risk here)
             sendReply(s,data,addr)
     else:
         # business as usual
