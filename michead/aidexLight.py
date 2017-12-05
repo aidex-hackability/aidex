@@ -52,9 +52,11 @@ DOT_COLORS = [  0x00400000,   # red       0x200000  0
                 0x04080000,   # pink      0x200010  7
                 0x00004020,   # grnblu    0x200010  8
                 0x00000408,   # paleblue  0x200010  9
-                0x00FF0000,   # Strongred 0x200000  10
-                0x200F0F0F,   # white     0xFFFFFF  11
-                0x00000204 ]  # test      0x200010  12
+                0x00FF0000,   # StrongRed 0x200000  10
+                0x0000FF00,   # StrongGrn 0x200000  11
+                0x000000FF,   # StrongBlu 0x200000  12
+                0x200F0F0F,   # white     0xFFFFFF  13
+                0x00000204 ]  # test      0x200010  14
 
 
 # Create a ws2811_t structure from the LED configuration.
@@ -205,18 +207,75 @@ while 1:
                 resp = ws.ws2811_render(leds)
                 time.sleep(0.035)
 
-    elif data[0] == 0x64: #'d' means drive purple
+    elif data[0] == 0x64 or data[0] == 0x30: #'d' means drive Start purple
         for i in range(LED_COUNT):
-                ws.ws2811_led_set(channel, i, DOT_COLORS[6])
-                resp = ws.ws2811_render(leds)
-                time.sleep(0.035)
+            ws.ws2811_led_set(channel, i, 0)
+            resp = ws.ws2811_render(leds)
+        for i in range(2):
+            ws.ws2811_led_set(channel, i, DOT_COLORS[6])
+            resp = ws.ws2811_render(leds)
+            time.sleep(0.035)
+                
+    elif data[0] == 0x31: #'1' means drive speed 1 purple
+        for i in range(LED_COUNT):
+            ws.ws2811_led_set(channel, i, 0)
+            resp = ws.ws2811_render(leds)
+        for i in range(4):
+            ws.ws2811_led_set(channel, i, DOT_COLORS[6])
+            resp = ws.ws2811_render(leds)
+            time.sleep(0.005)
 
-    elif data[0] == 0x77: #'w' means setup white
+    elif data[0] == 0x32: #'2' means drive speed 1 purple
+        for i in range(LED_COUNT):
+            ws.ws2811_led_set(channel, i, 0)
+            resp = ws.ws2811_render(leds)
+        for i in range(6):
+            ws.ws2811_led_set(channel, i, DOT_COLORS[6])
+            resp = ws.ws2811_render(leds)
+            time.sleep(0.005)
+                
+    elif data[0] == 0x33: #'3' means drive speed 1 purple
+        for i in range(LED_COUNT):
+            ws.ws2811_led_set(channel, i, 0)
+            resp = ws.ws2811_render(leds)
+        for i in range(LED_COUNT):
+            ws.ws2811_led_set(channel, i, DOT_COLORS[6])
+            resp = ws.ws2811_render(leds)
+            time.sleep(0.005)
+
+    elif data[0] == 0x65: #'e' means turn left speed 1 strong blue
+        for i in range(LED_COUNT):
+            ws.ws2811_led_set(channel, i, 0)
+            resp = ws.ws2811_render(leds)
+        for i in range(4):
+            ws.ws2811_led_set(channel, i, DOT_COLORS[12])
+            resp = ws.ws2811_render(leds)
+            time.sleep(0.005)
+
+    elif data[0] == 0x66: #'f' means turn right speed 1 strong red
+        for i in range(LED_COUNT):
+            ws.ws2811_led_set(channel, i, 0)
+            resp = ws.ws2811_render(leds)
+        for i in range(4):
+            ws.ws2811_led_set(channel, i, DOT_COLORS[10])
+            resp = ws.ws2811_render(leds)
+            time.sleep(0.005)
+
+    elif data[0] == 0x78: #'x' means reverse speed 1 Yellow
+        for i in range(LED_COUNT):
+            ws.ws2811_led_set(channel, i, 0)
+            resp = ws.ws2811_render(leds)
+        for i in range(4):
+            ws.ws2811_led_set(channel, i, DOT_COLORS[2])
+            resp = ws.ws2811_render(leds)
+            time.sleep(0.005)
+
+    elif data[0] == 0x77: #'w' means all white
         #Turn all LEDS off
         for i in range(LED_COUNT):
-                ws.ws2811_led_set(channel, i, DOT_COLORS[11])
-                resp = ws.ws2811_render(leds)
-                time.sleep(0.035)
+            ws.ws2811_led_set(channel, i, DOT_COLORS[13])
+            resp = ws.ws2811_render(leds)
+            time.sleep(0.035)
                 
     elif data[0] == 0x7A: #'Z' means rainbow
         offset = 0
